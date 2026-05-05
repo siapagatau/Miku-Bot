@@ -110,14 +110,21 @@
         .hero .avatar-icon {
             width: 140px;
             height: 140px;
-            background: linear-gradient(145deg, #e2f0f0, #ffffff);
+            background: transparent; /* diubah agar gambar terlihat tanpa gradien */
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 5rem;
-            color: #07a5a5;
+            overflow: hidden;   /* penting untuk image rounding */
             border: 3px solid white;
+        }
+        /* styling gambar profil di dalam avatar-icon */
+        .hero .avatar-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
         }
         .hero h1 {
             font-size: 3.4rem;
@@ -275,7 +282,7 @@
         }
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.4rem; }
-            .hero .avatar-icon { width: 110px; height: 110px; font-size: 3.8rem; }
+            .hero .avatar-icon { width: 110px; height: 110px; }
             .feature-card { padding: 1.5rem; }
             .section-title { font-size: 1.9rem; }
         }
@@ -309,9 +316,10 @@
 <!-- Hero Section -->
 <section id="home" class="hero">
     <div class="container text-center">
+        <!-- Profil menggunakan gambar dari ./img/pp.jpg -->
         <div class="avatar-wrapper mb-4">
             <div class="avatar-icon">
-                <i class="fas fa-head-side-vr"></i>
+                <img src="./img/pp.jpg" alt="Foto Profil MikuBot">
             </div>
         </div>
         <h1>MikuBot<span class="typing-demo" style="color:#06a58a;"> ✨</span></h1>
