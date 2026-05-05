@@ -1,142 +1,485 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <link rel="icon" href="https://getwaves.io/favicon-32x32.png?v=f13a1a2e88a9720e746d5561039d3f5f" />
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
-
-    <!-- CSS -->
-    <link rel="stylesheet" crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==">
-<link href='https://use.fontawesome.com/releases/v5.8.2/css/all.css' rel='stylesheet' type='text/css' />
-    <link rel="stylesheet" href="project.css" />
-
-    <title>Miku Bot</title>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Miku Bot | Solusi Otomatisasi Cerdas</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Inter & Poppins untuk minimalis modern -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-      h1 {
-        text-align: center;
-        color: #ffffff;
-      }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafc;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .navbar-brand, .btn, .lead {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #eef2f5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #07a5a5;
+            border-radius: 12px;
+        }
+
+        /* Navbar modern + blur effect */
+        .navbar {
+            background: rgba(7, 165, 165, 0.92);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            padding: 0.8rem 0;
+        }
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.6rem;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #FFFFFF, #E0F2FE);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent !important;
+            text-shadow: 0 2px 3px rgba(0,0,0,0.05);
+        }
+        .nav-link {
+            font-weight: 500;
+            margin: 0 0.3rem;
+            transition: all 0.2s;
+            color: white !important;
+            opacity: 0.85;
+            border-radius: 30px;
+            padding: 0.5rem 1rem;
+        }
+        .nav-link:hover, .nav-link.active {
+            opacity: 1;
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hero / Jumbotron minimalis */
+        .hero {
+            padding: 8rem 1.5rem 5rem;
+            background: linear-gradient(145deg, #ffffff 0%, #f0f9ff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(7,165,165,0.08) 0%, rgba(7,165,165,0) 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+        .avatar-wrapper {
+            display: inline-block;
+            background: linear-gradient(135deg, #07a5a5, #06d6a0);
+            padding: 5px;
+            border-radius: 50%;
+            box-shadow: 0 20px 30px -10px rgba(6, 214, 160, 0.3);
+            transition: all 0.4s ease;
+        }
+        .avatar-wrapper:hover {
+            transform: scale(1.02);
+            box-shadow: 0 25px 35px -12px rgba(7,165,165,0.4);
+        }
+        .hero img {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid white;
+            background: white;
+        }
+        .hero h1 {
+            font-size: 3.4rem;
+            font-weight: 800;
+            background: linear-gradient(120deg, #0b4f6c, #07a5a5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.75rem;
+        }
+        .hero .lead {
+            font-size: 1.2rem;
+            color: #2c3e42;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        /* button modern */
+        .btn-modern {
+            background: linear-gradient(95deg, #07a5a5, #06d6a0);
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            color: white !important;
+            letter-spacing: 0.3px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 18px rgba(7, 165, 165, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .btn-modern i {
+            font-size: 1.1rem;
+            transition: transform 0.2s;
+        }
+        .btn-modern:hover {
+            transform: translateY(-4px);
+            background: linear-gradient(95deg, #069393, #05c292);
+            box-shadow: 0 12px 24px rgba(7, 165, 165, 0.4);
+        }
+        .btn-modern:hover i {
+            transform: translateX(4px);
+        }
+        .btn-outline-light-modern {
+            background: transparent;
+            border: 2px solid #07a5a5;
+            color: #07a5a5;
+            padding: 0.7rem 1.6rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-outline-light-modern:hover {
+            background: #07a5a5;
+            color: white;
+            border-color: #07a5a5;
+            transform: translateY(-2px);
+        }
+
+        /* Section fitur */
+        .section-title {
+            font-size: 2.4rem;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(120deg, #0f5a5a, #07a5a5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .section-sub {
+            color: #5b6e7c;
+            max-width: 600px;
+            margin: 0.5rem auto 2rem;
+        }
+        .feature-card {
+            background: #ffffff;
+            border-radius: 32px;
+            padding: 2rem 1.5rem;
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            box-shadow: 0 10px 25px -10px rgba(0,0,0,0.05);
+            border: 1px solid rgba(7,165,165,0.15);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(7,165,165,0.4);
+            box-shadow: 0 25px 35px -12px rgba(7, 165, 165, 0.2);
+        }
+        .feature-icon {
+            font-size: 2.8rem;
+            background: linear-gradient(145deg, #e0f7fa, #c1f0eb);
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 25px;
+            color: #07a5a5;
+            margin-bottom: 1.4rem;
+        }
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #1e2a32;
+        }
+        .feature-card p {
+            color: #4c5a64;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        /* Wave decorative */
+        .wave-bottom {
+            margin-bottom: -2px;
+        }
+
+        /* Footer minimal */
+        .footer {
+            background: #0a2f2f;
+            color: #cbd5e1;
+            padding: 2rem 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .footer a {
+            color: #a5f3e8;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        .footer a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        /* typing effect for extra touch */
+        .typing-demo {
+            display: inline-block;
+            border-right: 3px solid #07a5a5;
+            white-space: nowrap;
+            overflow: hidden;
+            font-weight: 600;
+            animation: blinkCursor 0.75s step-end infinite;
+        }
+        @keyframes blinkCursor {
+            50% { border-color: transparent; }
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.4rem; }
+            .hero img { width: 110px; height: 110px; }
+            .feature-card { padding: 1.5rem; }
+            .section-title { font-size: 1.9rem; }
+        }
     </style>
-  </head>
-  <body id="home">
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm fixed-top" style="background-color: #07a5a5">
-      <div class="container">
-        <a class="navbar-brand" href="#">Miku Bot</a>
+</head>
+<body>
+
+<!-- Navbar Modern -->
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#"><i class="fas fa-robot me-2"></i>MikuBot</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#home">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#fitur">Fitur Bot</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="http://wa.me/62882163353091" target="_blank">Pemilik MikuBot</a>
-            </li>
-          </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#home">Beranda</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#fitur">Fitur Bot</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://wa.me/62882163353091" target="_blank"><i class="fab fa-whatsapp me-1"></i>Owner</a>
+                </li>
+            </ul>
         </div>
-    </nav>
-    <!-- End Navbar -->
-
-    <!-- Jumbotron -->
-    <div class="jumbotron text-center">
-      <img src="img/MikuBot.jpg" alt="MikuBot" width="200" class="rounded-circle img-thumbnail" />
-      <h1 class="display-4 text-black">MikuBot</h1>
-      <p class="lead">Hai saya MikuBot 👋, saya adalah sebuah program otomatisasi yang dibuat untuk mempermudah suatu pekerjaan anda.</p>
-      <a href="https://chat.whatsapp.com/JaHyCLiqeThEftw3fhQVXn" target="_blank" class="style-btn style-btn-gray mt-4">CHAT BOT<span></span></a>
-      <br>
-      <br>
-      <br>
-      <p class="lead">Jika ingin lapor, request fitur, atau ingin membeli script bot-wa, silahkan hubungi nomor dibawah ini.</p>
-      <a href="http://wa.me/62882163353091" target="_blank" class="style-btn style-btn-gray mt-4">Nomornya orang ganteng 🤗<span></span></a>
-      <br>
-      <br>
-      <br>
     </div>
-    <!-- End Jumbotron -->
+</nav>
 
-    <!-- Fitur -->
-    <section id="fitur">
-      <div class="container">
-        <div class="row text-center mb-3">
-          <div class="col">
-            <h2>🖥 Fitur MikuBot</h2>
-          </div>
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="container text-center">
+        <div class="avatar-wrapper mb-4">
+            <!-- Menggunakan icon FontAwesome sebagai avatar modern karena gambar tidak tersedia -->
+            <div style="width: 140px; height: 140px; background: linear-gradient(145deg, #e2f0f0, #ffffff); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 5rem; color: #07a5a5; border: 3px solid white;">
+                <i class="fas fa-head-side-vr"></i>
+            </div>
         </div>
-        <div class="row justify-content-center fs-5 text-center">
-          <div class="col-md-4">
-            <p>Miku Bot memiliki banyak fitur seperti membuat sticker, download anime dan lainnya</p>
-          </div>
-          <div class="col-md-4">Miku Bot juga memiliki fitur game Epic Rpg yang seru untuk dimainkan bersama-sama</div>
+        <h1>MikuBot<span class="typing-demo" style="color:#06a58a;"> ✨</span></h1>
+        <p class="lead mt-3">Halo, saya <strong>MikuBot</strong> 👋 — asisten otomatis cerdas yang dirancang untuk mempermudah pekerjaan dan menghibur Anda di WhatsApp!</p>
+        <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
+            <a href="https://chat.whatsapp.com/JaHyCLiqeThEftw3fhQVXn" target="_blank" class="btn-modern">
+                <i class="fab fa-whatsapp"></i> CHAT BOT SEKARANG
+            </a>
+            <a href="http://wa.me/62882163353091" target="_blank" class="btn-outline-light-modern">
+                <i class="fas fa-user-astronaut"></i> HUBUNGI OWNER
+            </a>
         </div>
-      </div>
-      <br>
-      <div class="row-plow mb-4 mt-6">
-        <div class="col-md-6">
-        <div class="border rounded-1 border-700 h-100 features-items">
-        <div class="p-5"><img src="img/dashboardicon.png" alt="Dashboard" style="width:48px;height:48px;">
-        <h3 class="pt-3 lh-base">📌 Tampilan</h3>
-        <p class="mb-0">Tampilan MikuBot | Tampilannya sangat menarik dan juga mudah dipahami</p>
-        </div>
-        </div>
-        </div>
-        <div class="col-md-6">
-        <div class="border rounded-1 border-700 h-100 features-items">
-        <div class="p-5"><img src="img/comment.png" alt="Comment" style="width:48px;height:48px;">
-        <h3 class="pt-3 lh-base">📌 Info Menarik</h3>
-        <p class="mb-0">Info Menarik | Bot gratis masuk group kalian dengan cara kirim link groupnya ke nomor owner bot</p>
-        </div>
-        </div>
-        </div>
-        </div>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path
-          fill="#e2edff"
-          fill-opacity="1"
-          d="M0,128L48,138.7C96,149,192,171,288,165.3C384,160,480,128,576,96C672,64,768,32,864,42.7C960,53,1056,107,1152,138.7C1248,171,1344,181,1392,186.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-        ></path>
-      </svg>
-    </section>
-    <!-- End Fitur -->
+        <p class="mt-5 text-secondary" style="font-size: 0.9rem;">Butuh bantuan? <i class="fas fa-arrow-right"></i> Request fitur / lapor bug / beli script WA klik tombol owner di atas.</p>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="footer text-white text-center pb-3">
-        <p>Create with ❤️ By <a href="#" class="text-white" style="text-decoration: none;">MikuBot</a></p>
-    </footer>
-    <!-- End Footer -->
+<!-- Fitur Section (modern cards) -->
+<section id="fitur" class="py-5 position-relative" style="background: #f9feff;">
+    <div class="container py-4">
+        <div class="row text-center mb-5">
+            <div class="col">
+                <h2 class="section-title"><i class="fas fa-microchip me-2"></i> Kapabilitas MikuBot</h2>
+                <p class="section-sub">Fitur lengkap, performa cepat, dan selalu update untuk kebutuhan digital kamu.</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <!-- Card 1: Sticker & Media -->
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-sticky-note"></i></div>
+                    <h3>Sticker & Downloader</h3>
+                    <p>Buat stiker keren dari gambar/video, download konten dari Instagram, TikTok, YouTube, dan anime dengan sekali klik.</p>
+                </div>
+            </div>
+            <!-- Card 2: Game Epic RPG -->
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-dice-d20"></i></div>
+                    <h3>🎮 Epic RPG Games</h3>
+                    <p>Mainkan serunya game RPG seru bersama teman di group. Battle, petualangan, & event eksklusif hanya di MikuBot!</p>
+                </div>
+            </div>
+            <!-- Card 3: Group Management -->
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-users"></i></div>
+                    <h3>Manajemen Grup</h3>
+                    <p>Welcome message, anti-link, auto-kick, dan banyak tools admin. Bantu grup kamu lebih teratur dan aman.</p>
+                </div>
+            </div>
+            <!-- Card 4: AI & Informasi -->
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-brain"></i></div>
+                    <h3>AI & Informasi</h3>
+                    <p>Chat dengan kecerdasan buatan, cari resep, fakta menarik, cuaca, berita terbaru, dan lainnya gratis 24 jam.</p>
+                </div>
+            </div>
+            <!-- Card 5: Anime & Hiburan -->
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-film"></i></div>
+                    <h3>Anime Universe</h3>
+                    <p>Download anime, info karakter, rekomendasi anime populer, dan wallpaper waifu – semua dari satu bot!</p>
+                </div>
+            </div>
+            <!-- Card 6: Layanan Premium & Script -->
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-code"></i></div>
+                    <h3>Script Bot WhatsApp</h3>
+                    <p>Ingin membuat bot sendiri? Tersedia script premium. Chat owner untuk harga dan fitur eksklusif.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Additional info block menarik -->
+        <div class="row mt-5 pt-3">
+            <div class="col-12 text-center">
+                <div class="bg-white p-4 rounded-4 shadow-sm border-start border-4 border-info" style="background: #ffffffdd;">
+                    <i class="fas fa-info-circle fa-2x text-info me-2 align-middle"></i>
+                    <span class="fw-semibold fs-5">📢 Info menarik :</span> Bot GRATIS! Tinggal invite MikuBot ke grup kamu. Kirimkan link grup ke <a href="http://wa.me/62882163353091" target="_blank" style="color: #07a5a5;">nomor owner</a> — kami proses cepat.
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Gelombang SVG modern untuk transisi -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 180" style="display: block; margin-bottom: -6px;">
+        <path fill="#0a2f2f" fill-opacity="1" d="M0,128L48,138.7C96,149,192,171,288,165.3C384,160,480,128,576,112C672,96,768,96,864,106.7C960,117,1056,139,1152,138.7C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+    </svg>
+</section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script>
-      const scriptURL = 'https://script.google.com/macros/s/AKfycbx0VFO3uDgJY_zI6K6FBJRd_l6VR4AlevAoOO6evoZGFCxDdn7m8gZRkmX91LydQGLb/exec'
-      const form = document.forms['MikuBot-contact-form']
-      const btnKirim = document.querySelector('.btn-kirim')
-      const btnLoading = document.querySelector('.btn-loading')
-      const myAlert = document.querySelector('.my-alert')
-    
-      form.addEventListener('submit', e => {
-        e.preventDefault()
-        btnLoading.classList.toggle('d-none');
-        btnKirim.classList.toggle('d-none');
-        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-          .then(response => {
-            // Tampil Kirim Button
-            btnLoading.classList.toggle('d-none');
-            btnKirim.classList.toggle('d-none');
-            // Pemberitahuan
-            myAlert.classList.toggle('d-none');
-            // Reset Form
-            form.reset()
-            console.log('Success!', response)})
-          .catch(error => console.error('Error!', error.message))
-      })
-    </script>
-  </body>
+<!-- Footer Minimalis Elegan -->
+<footer class="footer">
+    <div class="container">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <span><i class="far fa-copyright me-1"></i> 2025 MikuBot — Otomatisasi Cerdas</span>
+            <div class="mt-2 mt-md-0">
+                <a href="#" class="mx-2"><i class="fab fa-github"></i></a>
+                <a href="https://chat.whatsapp.com/JaHyCLiqeThEftw3fhQVXn" target="_blank" class="mx-2"><i class="fab fa-whatsapp"></i> Komunitas</a>
+                <a href="http://wa.me/62882163353091" target="_blank" class="mx-2"><i class="fas fa-headset"></i> Support</a>
+            </div>
+        </div>
+        <hr class="bg-secondary my-3 opacity-25">
+        <p class="mb-0 small">Create with <i class="fas fa-heart text-danger"></i> by <a href="#" class="text-white-50">Miku Team</a> · Solusi Bot WhatsApp terbaik</p>
+    </div>
+</footer>
+
+<!-- Bootstrap JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- optional smooth typing for hero text -->
+<script>
+    (function(){
+        // efek mengetik sederhana pada judul (opsional)
+        const heroTitle = document.querySelector('.hero h1');
+        if(heroTitle && !heroTitle.innerHTML.includes('span')){
+            // tidak perlu mengganti karena sudah ada typing-demo
+        }
+        // Navbar active on scroll & highlight
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const scrollPos = window.scrollY + 150;
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                if(scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight){
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                const href = link.getAttribute('href');
+                if(href && href.includes(current) && current !== ''){
+                    link.classList.add('active');
+                } else if(current === '' && href === '#home'){
+                    link.classList.add('active');
+                } else if(current === '' && href !== '#home') {
+                    // nothing
+                }
+            });
+            // navbar background slight on scroll
+            const navbar = document.querySelector('.navbar');
+            if(window.scrollY > 30){
+                navbar.style.background = 'rgba(7, 165, 165, 0.96)';
+                navbar.style.backdropFilter = 'blur(10px)';
+            } else {
+                navbar.style.background = 'rgba(7, 165, 165, 0.92)';
+            }
+        });
+        // sedikit animasi hover pada card fitur
+        const cards = document.querySelectorAll('.feature-card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transition = 'all 0.3s cubic-bezier(0.2,0.9,0.4,1.1)';
+            });
+        });
+        // Typing cursor blink lebih natural
+        const typingSpan = document.querySelector('.typing-demo');
+        if(typingSpan){
+            let textArr = [' ✨', ' 🤖', ' 🚀'];
+            let idx = 0;
+            setInterval(() => {
+                idx = (idx+1) % textArr.length;
+                if(typingSpan) typingSpan.innerHTML = textArr[idx];
+            }, 2000);
+        }
+    })();
+</script>
+</body>
 </html>
