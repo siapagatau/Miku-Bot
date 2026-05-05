@@ -42,7 +42,7 @@
 
         /* Navbar modern + blur effect */
         .navbar {
-            background: rgba(7, 165, 165, 0.92);
+            background: rgba(7, 165, 165, 0.94);
             backdrop-filter: blur(8px);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
@@ -107,13 +107,17 @@
             transform: scale(1.02);
             box-shadow: 0 25px 35px -12px rgba(7,165,165,0.4);
         }
-        .hero img {
+        .hero .avatar-icon {
             width: 140px;
             height: 140px;
-            object-fit: cover;
+            background: linear-gradient(145deg, #e2f0f0, #ffffff);
             border-radius: 50%;
-            border: 4px solid white;
-            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: #07a5a5;
+            border: 3px solid white;
         }
         .hero h1 {
             font-size: 3.4rem;
@@ -237,75 +241,15 @@
             font-size: 0.95rem;
         }
 
-        /* ========= WAVE MODERN + ANIMASI ========= */
-        .wave-animated {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            line-height: 0;
-            margin-top: -2px; /* menghilangkan jarak putih */
-            margin-bottom: -2px;
-        }
-        .wave-animated svg {
-            display: block;
-            width: 100%;
-            height: auto;
-            min-height: 110px;
-            transform-origin: center;
-            animation: gentleWaveFlow 12s ease-in-out infinite;
-        }
-        /* lapisan gelombang ganda untuk efek lebih tebal & dinamis */
-        .wave-double {
-            position: relative;
-            background-color: #0a2f2f; /* warna solid yang sama dengan footer */
-        }
-        .wave-layer {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            pointer-events: none;
-        }
-        .wave-layer svg {
-            position: relative;
-            display: block;
-            width: 100%;
-            height: auto;
-        }
-        .layer-1 {
-            z-index: 2;
-            opacity: 0.8;
-            animation: slowWave 18s linear infinite;
-        }
-        .layer-2 {
-            z-index: 1;
-            opacity: 0.5;
-            animation: slowWaveReverse 22s linear infinite;
-        }
-        @keyframes slowWave {
-            0% { transform: translateX(0) translateZ(0); }
-            50% { transform: translateX(-3%) translateZ(0); }
-            100% { transform: translateX(0) translateZ(0); }
-        }
-        @keyframes slowWaveReverse {
-            0% { transform: translateX(0) translateZ(0); }
-            50% { transform: translateX(3%) translateZ(0); }
-            100% { transform: translateX(0) translateZ(0); }
-        }
-        @keyframes gentleWaveFlow {
-            0% { transform: translateX(0) scaleX(1); }
-            50% { transform: translateX(-1.5%) scaleX(1.02); }
-            100% { transform: translateX(0) scaleX(1); }
-        }
-        /* footer styling */
+        /* footer langsung menempel tanpa gelombang */
         .footer {
             background: #0a2f2f;
             color: #cbd5e1;
             padding: 2rem 0;
             text-align: center;
             font-size: 0.9rem;
+            margin-top: 0;
             position: relative;
-            z-index: 3;
         }
         .footer a {
             color: #a5f3e8;
@@ -331,10 +275,9 @@
         }
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.4rem; }
-            .hero img { width: 110px; height: 110px; }
+            .hero .avatar-icon { width: 110px; height: 110px; font-size: 3.8rem; }
             .feature-card { padding: 1.5rem; }
             .section-title { font-size: 1.9rem; }
-            .wave-animated svg { min-height: 70px; }
         }
     </style>
 </head>
@@ -367,7 +310,7 @@
 <section id="home" class="hero">
     <div class="container text-center">
         <div class="avatar-wrapper mb-4">
-            <div style="width: 140px; height: 140px; background: linear-gradient(145deg, #e2f0f0, #ffffff); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 5rem; color: #07a5a5; border: 3px solid white;">
+            <div class="avatar-icon">
                 <i class="fas fa-head-side-vr"></i>
             </div>
         </div>
@@ -386,7 +329,7 @@
 </section>
 
 <!-- Fitur Section -->
-<section id="fitur" class="py-5 position-relative" style="background: #f9feff;">
+<section id="fitur" class="py-5" style="background: #f9feff;">
     <div class="container py-4">
         <div class="row text-center mb-5">
             <div class="col">
@@ -456,29 +399,7 @@
     </div>
 </section>
 
-<!-- =========== WAVE MODERN DENGAN ANIMASI MEMENUHI LEBAR LAYAR ============ -->
-<div class="wave-double" style="position: relative; background: #0a2f2f; margin-top: -2px;">
-    <!-- Lapisan gelombang pertama (lebih cepat / berbeda arah) -->
-    <div class="wave-layer layer-1" style="position: relative; top: 0;">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 160" preserveAspectRatio="none" style="display: block; width: 100%; height: auto; min-height: 110px;">
-            <path fill="#0f4545" fill-opacity="0.9" d="M0,96L48,112C96,128,192,160,288,154.7C384,149,480,107,576,96C672,85,768,107,864,122.7C960,139,1056,149,1152,138.7C1248,128,1344,96,1392,80L1440,64L1440,160L1392,160C1344,160,1248,160,1152,160C1056,160,960,160,864,160C768,160,672,160,576,160C480,160,384,160,288,160C192,160,96,160,48,160L0,160Z"></path>
-        </svg>
-    </div>
-    <!-- Lapisan gelombang kedua (lebih halus dan tebal) dengan animasi lambat -->
-    <div class="wave-layer layer-2" style="position: relative; top: -60px;">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200" preserveAspectRatio="none" style="display: block; width: 100%; height: auto; min-height: 110px;">
-            <path fill="#07a5a5" fill-opacity="0.55" d="M0,128L48,138.7C96,149,192,171,288,165.3C384,160,480,128,576,112C672,96,768,96,864,106.7C960,117,1056,139,1152,138.7C1248,139,1344,117,1392,106.7L1440,96L1440,200L1392,200C1344,200,1248,200,1152,200C1056,200,960,200,864,200C768,200,672,200,576,200C480,200,384,200,288,200C192,200,96,200,48,200L0,200Z"></path>
-        </svg>
-    </div>
-    <!-- Tambahan gelombang ketiga agar lebih dramatis dan tidak tipis -->
-    <div class="wave-layer" style="position: relative; top: -115px; z-index: 0; opacity: 0.4;">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 240" preserveAspectRatio="none" style="display: block; width: 100%; height: auto;">
-            <path fill="#06d6a0" fill-opacity="0.3" d="M0,192L60,186.7C120,181,240,171,360,176C480,181,600,203,720,197.3C840,192,960,160,1080,149.3C1200,139,1320,149,1380,154.7L1440,160L1440,240L1380,240C1320,240,1200,240,1080,240C960,240,840,240,720,240C600,240,480,240,360,240C240,240,120,240,60,240L0,240Z"></path>
-        </svg>
-    </div>
-</div>
-
-<!-- Footer Minimalis Elegan -->
+<!-- Footer tanpa gelombang, langsung menempel -->
 <footer class="footer">
     <div class="container">
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
@@ -529,7 +450,7 @@
             }
         });
         
-        // Typing effect dynamic
+        // Typing effect dinamis
         const typingSpan = document.querySelector('.typing-demo');
         if(typingSpan){
             let emojis = [' ✨', ' 🤖', ' 🚀', ' 💎'];
@@ -538,14 +459,6 @@
                 idx = (idx+1) % emojis.length;
                 if(typingSpan) typingSpan.innerHTML = emojis[idx];
             }, 2000);
-        }
-        
-        // Animasi wave tambahan agar smooth di semua device
-        const layers = document.querySelectorAll('.wave-layer svg');
-        if(layers.length){
-            layers.forEach(svg => {
-                svg.style.willChange = 'transform';
-            });
         }
     })();
 </script>
